@@ -30,12 +30,12 @@ The system uses AST parsing via JavaParser to analyze Java code programmatically
                  +------------------+
                           |
         ----------------------------------------
-        |               |                      |
-        v               v                      v
+        |                 |                      |
+        v                 v                      v
 +----------------+  +----------------+  +---------------------+
 |CodeParserService| |ComplexityService| |CodeSmellService     |
 +----------------+  +----------------+  +---------------------+
-        |               |                      |
+        |                 |                      |
         ----------------------------------------
                           |
                           v
