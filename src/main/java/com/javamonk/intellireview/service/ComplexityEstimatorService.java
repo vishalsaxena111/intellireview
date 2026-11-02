@@ -8,14 +8,21 @@ public class ComplexityEstimatorService {
 
     public String estimateTimeComplexity(CodeStructure structure) {
         if (structure.isRecursionDetected()) {
-            return "O(2^n)";
+            if (structure.getMaxRecursiveCallsInMethod() > 1) {
+                return "O(2^n)";
+            }
+            return "O(n)";
         }
 
-        if (structure.getForLoopCount() >= 2 || structure.getWhileLoopCount() >= 2) {
+        if (structure.getMaxLoopNestingDepth() >= 3) {
+            return "O(n^" + structure.getMaxLoopNestingDepth() + ")";
+        }
+
+        if (structure.getMaxLoopNestingDepth() == 2) {
             return "O(n^2)";
         }
 
-        if (structure.getForLoopCount() == 1 || structure.getWhileLoopCount() == 1) {
+        if (structure.getTotalLoopCount() > 0) {
             return "O(n)";
         }
 
@@ -27,8 +34,14 @@ public class ComplexityEstimatorService {
             return "O(n) (due to call stack)";
         }
 
-        // For simplicity, assuming space proportional to method + loops
-        if (structure.getMethodCount() > 1) {
+        boolean hasGrowingDataStructure = structure.getImportedTypes().stream()
+                .anyMatch(type -> type.contains("List")
+                        || type.contains("Map")
+                        || type.contains("Set")
+                        || type.contains("Queue")
+                        || type.contains("Stack"));
+
+        if (hasGrowingDataStructure) {
             return "O(n)";
         }
 

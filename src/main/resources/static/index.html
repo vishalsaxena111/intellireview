@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IntelliReview</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="app-shell">
+    <section class="workspace">
+        <div class="editor-panel">
+            <header class="topbar">
+                <div>
+                    <h1>IntelliReview</h1>
+                    <p>Java code review, complexity analysis, DSA pattern detection, and optimization guidance.</p>
+                </div>
+                <div class="actions">
+                    <button id="sampleButton" class="secondary-button" type="button">Sample</button>
+                    <button id="analyzeButton" class="primary-button" type="button">Analyze</button>
+                </div>
+            </header>
+            <label class="editor-label" for="codeInput">Java code</label>
+            <textarea id="codeInput" spellcheck="false" aria-label="Java code input"></textarea>
+        </div>
+
+        <aside class="result-panel" aria-live="polite">
+            <div id="status" class="status">Paste Java code and run analysis.</div>
+
+            <section class="metric-grid">
+                <div class="metric">
+                    <span>Time</span>
+                    <strong id="timeComplexity">-</strong>
+                </div>
+                <div class="metric">
+                    <span>Space</span>
+                    <strong id="spaceComplexity">-</strong>
+                </div>
+                <div class="metric">
+                    <span>Loops</span>
+                    <strong id="loopCount">-</strong>
+                </div>
+                <div class="metric">
+                    <span>Methods</span>
+                    <strong id="methodCount">-</strong>
+                </div>
+            </section>
+
+            <section class="result-section ai-section">
+                <h2>DSA Patterns</h2>
+                <ul id="patterns" data-static-output></ul>
+            </section>
+
+            <section class="result-section ai-section">
+                <h2>AI Agent Review</h2>
+                <p id="aiStatus" class="ai-status">Set OPENAI_API_KEY to enable AI review.</p>
+                <p id="aiSummary" class="ai-summary"></p>
+                <h3>Correctness</h3>
+                <ul id="aiCorrectness"></ul>
+                <h3>Complexity</h3>
+                <ul id="aiComplexity"></ul>
+                <h3>DSA Patterns</h3>
+                <ul id="aiPatterns"></ul>
+                <h3>Optimization Plan</h3>
+                <ul id="aiOptimization"></ul>
+                <pre id="aiImprovedCode" class="code-output"></pre>
+            </section>
+
+            <section class="result-section static-review-section">
+                <h2>Optimization</h2>
+                <ul id="optimizations"></ul>
+            </section>
+
+            <section class="result-section static-review-section">
+                <h2>Correctness Warnings</h2>
+                <ul id="correctness"></ul>
+            </section>
+
+            <section class="result-section static-review-section">
+                <h2>Code Smells</h2>
+                <ul id="smells"></ul>
+            </section>
+
+            <section class="result-section static-review-section">
+                <h2>Review Notes</h2>
+                <ul id="suggestions"></ul>
+            </section>
+        </aside>
+    </section>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
